@@ -1,3 +1,8 @@
 # nhom5_hpb_front
 
-npm i bootstrap
+package:
+npm i axios
+npm react-router-dom
+
+start:
+npm start
