@@ -9,7 +9,10 @@ import Profile from './body/Profile';
 import Login from './body/Login'
 import ProductDetail from './body/ProductDetail';
 
+import React, { useEffect, useState } from 'react'
+
 function App() {
+
   return (
     <div className="App">
       <Router>
@@ -18,6 +21,7 @@ function App() {
         <Route exact path="/" element = {<Home/>}></Route>
         <Route exact path="/shop" element = {<Shop/>}></Route>
         <Route exact path="/cart" element = {<Cart/>}></Route>
+        <Route exact path='/cart/:user' element = {<Cart/>}></Route>
         <Route exact path="/order" element = {<Order/>}></Route>
         <Route exact path="/profile" element = {<Profile/>}></Route>
         <Route exact path="/login" element = {<Login/>}></Route>

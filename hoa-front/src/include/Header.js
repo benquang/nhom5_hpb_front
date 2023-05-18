@@ -52,7 +52,7 @@ export default function Header() {
                 </ul>
         </li>
         <li class="nav-item submenu dropdown">
-                <a style={{'font-size': '16px','color': 'black'}} href="/cart" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                <a style={{'font-size': '16px','color': 'black'}} href={"/cart/"+retrieveuser} class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                   aria-expanded="false">Cart</a>
         </li>
         <li class="nav-item submenu dropdown">
@@ -60,7 +60,7 @@ export default function Header() {
                   aria-expanded="false">Order</a>
         </li>
         <li class="nav-item">
-                <a style={{'font-size': '16px','color': 'black'}} class="nav-link" href="user">Contact</a>
+                <a style={{'font-size': '16px','color': 'black'}} class="nav-link" href="/profile">Contact</a>
         </li>
       </ul>
       </div>

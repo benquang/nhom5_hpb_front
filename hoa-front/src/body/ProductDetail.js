@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
+import InputNumber from 'react-input-number';
 
 import '../custom/css/bootstrap.css';
 import '../custom/css/phai1.css';
@@ -14,8 +15,12 @@ import Footer from '../include/Footer';
 
 export default function Home() {
 
+  let navigate = useNavigate();
+
   const { id } = useParams();
   const [product,setProduct] = useState([])
+
+  const [quantity, setQuantity] = useState();
 
   useEffect(()=>{
       loadProduct();
@@ -24,7 +29,36 @@ export default function Home() {
   const loadProduct=async()=>{
       const result=await axios.get(`http://localhost:9095/products/${id}`);
       setProduct(result.data);
+
+
+      const getProduct = 
+      {
+        user: localStorage.getItem('user'),
+        product: id
+      };
+
+      const result1=await axios.post(`http://localhost:9096/carts/quantity`, getProduct);
+      setQuantity(result1.data ? result1.data : 1)
   };
+
+  const [updateQuantity, setUpdateQuantity] = useState({
+    user: localStorage.getItem('user'),
+    product: id,
+    quantity: quantity
+  });
+
+  const onInputChange = (e) => {
+    //updateQuantity.quantity = e.target.value
+    setUpdateQuantity({ ...updateQuantity, [e.target.name]: e.target.value });
+  };
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    await axios.post("http://localhost:9096/carts", updateQuantity);
+    navigate("/cart/" + localStorage.getItem('user'));
+  };
+
+
 
   return (
     <body style={{'background-color': '#f4f4f6'}}>
@@ -33,7 +67,7 @@ export default function Home() {
 
       <div class="thanhdiachi">
        <div class="thanhdiachi1">
-        <h1 class="thanhdiachi2">Flora FLowers Shop / Shop</h1>
+        <h1 class="thanhdiachi2">Flora FLowers Shop / Shop{updateQuantity.quantity}</h1>
        </div>
       </div>
 
@@ -59,11 +93,16 @@ export default function Home() {
             <div class="detail3_color" style={{'margin-top':'0px'}}>Type:</div>
             <div class="detail3_h4" style={{'line-height': '40px'}}>{product.type}</div>
 
-            <form>
+            <form onSubmit={(e) => onSubmit(e)}>
              <input type="hidden" name="flower" value="${variation.product}"></input>
              <input type="hidden" name="variation" value="${variation.variation_id}"></input>
               <div class="quantity">
-                <input type="number" name="quantity" class="soluong1" min="0"></input>
+
+                <input type="text" class="soluong1" placeholder={quantity} 
+                 name="quantity" value={updateQuantity.quantity}
+                 onChange={(e) => onInputChange(e)}>
+                </input>
+
               </div>
               <input type="submit" value="Go to Cart" class="addcart"></input>
             </form>
