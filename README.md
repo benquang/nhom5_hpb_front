@@ -1,10 +1,15 @@
-# nhom5_hpb_front
+## About this project
+#npm create-react-app appname
 
-##npm create-react-app appname
-package:
-##npm i axios
-##npm react-router-dom
-##npm i react-input-number
+#cd /appname
 
-start:
+#npm i axios
+
+#npm i react-router-dom
+
+## Start
 npm start
+
+
+
+
