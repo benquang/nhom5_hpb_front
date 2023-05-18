@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { Link, useParams, useNavigate } from 'react-router-dom';
-import InputNumber from 'react-input-number';
 
 import '../custom/css/bootstrap.css';
 import '../custom/css/phai1.css';
@@ -38,7 +37,7 @@ export default function Home() {
       };
 
       const result1=await axios.post(`http://localhost:9096/carts/quantity`, getProduct);
-      setQuantity(result1.data ? result1.data : 1)
+      setQuantity(result1.data)
   };
 
   const [updateQuantity, setUpdateQuantity] = useState({
