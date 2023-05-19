@@ -75,6 +75,11 @@ export default function Cart() {
     total = total + (car.unitprice * car.quantity)
   })
 
+  var total1 = 0;
+  tonghop.map((tong,inde) => {
+    total1 = total1 + (tong.quantity * tong.price);
+  })
+
 
   return (
     <body style={{'background-color': '#f4f4f6'}}>
@@ -137,7 +142,7 @@ export default function Cart() {
         <div class="giohang2_total" style={{'width': '170px','border-bottom': '1px solid gray'}}>
          
         </div>
-        <div class="giohang2_total" style={{'margin-top': '10px'}}>Total: ${total}</div>
+        <div class="giohang2_total" style={{'margin-top': '10px'}}>Total: ${total1}</div>
         <div style={{'width': '100%','height':'50px','float':'left','background-color':'#ffffff'}}></div>
         <div class="giohang2_checkout">
             <a href="/order" class="giohang2_checkout_button">Check out</a>

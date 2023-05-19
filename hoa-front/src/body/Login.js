@@ -25,16 +25,40 @@ export default function Login() {
     password: "",
   });
 
+  const [newuser, setNewUser] = useState({
+    userid: "",
+    password: "",
+    fullname: "",
+    cardnumber: ""
+  });
+
   const { userid, password } = user;
 
   const onInputChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
+  const onInputChange1 = (e) => {
+    setNewUser({ ...newuser, [e.target.name]: e.target.value });
+  };
 
   const onSubmit = async (e) => {
     e.preventDefault();
     const result = await axios.post("http://localhost:9092/users", user);
+    if (result.data){
+
+      localStorage.setItem('user',result.data.userid)
+
+      navigate("/");
+    }
+    else {
+      navigate("/login/User or password invalid");
+    }
+  };
+
+  const onSubmit1 = async (e) => {
+    e.preventDefault();
+    const result = await axios.post("http://localhost:9092/users/register", newuser);
     if (result.data){
 
       localStorage.setItem('user',result.data.userid)
@@ -60,22 +84,19 @@ export default function Login() {
 
       <div class="order">
       <div class="order1" style={{'padding-bottom': '20px','margin-top': '500px'}}>
-      <form onSubmit={(e) => onSubmit(e)}>
+      <form onSubmit={(e) => onSubmit1(e)}>
             <input type="hidden" name="action" value="regist"></input>      
             <div class="order1_billing_address">Register</div>
             <div class="order1_billing_firstname">User Name</div>
             <div class="order1_billing_lastname">Password</div>
-            <input type="text" name="username" class="order1_billing_firstname_tb"></input>
-            <input type="password" name="password" class="order1_billing_lastname_tb"></input>
+            <input type="text" name="userid" value={newuser.userid} onChange={(e) => onInputChange1(e)} class="order1_billing_firstname_tb"></input>
+            <input type="password" name="password" value={newuser.password} onChange={(e) => onInputChange1(e)} class="order1_billing_lastname_tb"></input>
             <div class="order1_billing_address1">Full Name:</div>
-            <input type="text" name="fullname" class="order1_billing_address1_tb"></input>
-            <div class="order1_billing_firstname">Email</div>
-            <div class="order1_billing_lastname">Phone</div>
-            <input type="text" name="email" class="order1_billing_firstname_tb"></input>
-            <input type="text" name="phone"class="order1_billing_lastname_tb"></input>
+            <input type="text" name="fullname" value={newuser.fullname} onChange={(e) => onInputChange1(e)} class="order1_billing_address1_tb"></input>
+            <div class="order1_billing_firstname">Card Number</div>
+            <input type="text" name="cardnumber" value={newuser.cardnumber} onChange={(e) => onInputChange1(e)} class="order1_billing_firstname_tb"></input>
             <input type="submit" class="loginbutton" style={{'float': 'right','margin-right':'30px'}} value="Sign up"></input>
       </form>
-      <h1 style={{'font-size':'20px'}}>$thong bao</h1>
 
       </div>
       <div class="order1" style={{'width': '500px','margin-left':'80px','padding-left': '30px','padding-bottom': '10px'}}>

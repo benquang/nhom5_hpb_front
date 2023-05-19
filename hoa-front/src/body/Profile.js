@@ -135,11 +135,12 @@ export default function Profile() {
             <div class="profile2_lastname1" style={{'width': '56%','margin-top': '8px'}}>{order.address}</div>
     
             <div class="profile2_total" style={{'width':'100%','margin-top':'15px'}}>PAYMENT STATUS</div>
-            <div class="profile2_firstname" style={{'margin-top': '8px','width': '100%','margin-bottom':'5px','color': '#0d0d1f'}}>APPROVED</div>
-            <div class="profile2_total" style={{'width': '100%','margin-bottom':'15px','margin-top': '25px'}}>STATUS</div>
+            <div class="profile2_firstname" style={{'margin-top': '8px','width': '100%','margin-bottom':'5px','color': '#0d0d1f'}}>{order.paymentstatus}</div>
+            <div class="profile2_total" style={{'width':'100%','margin-top':'15px'}}>SHIPMENT STATUS</div>
+            <div class="profile2_firstname" style={{'margin-top': '8px','width': '100%','margin-bottom':'5px','color': '#0d0d1f'}}>{order.shipmentstatus}</div>
     
-            <div class="profile2_date">Order date:</div>
-            <div class="profile2_date1">2022 - 05 - 04</div>
+            <div class="profile2_date">Order Date:</div>
+            <div class="profile2_date1">{order.orderdate}</div>
           </div>
           </div>
         ))

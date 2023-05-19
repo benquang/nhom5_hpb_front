@@ -29,7 +29,7 @@ export default function Header() {
     <div class="main_menu">
     <div class="container" style={{'max-width': '1188px'}}>
     <nav class="navbar navbar-expand-lg navbar-light w-100">
-      <a href="/shop" class="navbar-brand logo_h">
+      <a href="/" class="navbar-brand logo_h">
         <img src={logo1} alt="" style={{'width':'50%','height': '50%'}}/>
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -56,7 +56,7 @@ export default function Header() {
                   aria-expanded="false">Cart</a>
         </li>
         <li class="nav-item submenu dropdown">
-                <a href="order" style={{'font-size': '16px','color': 'black'}} class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                <a href="/order" style={{'font-size': '16px','color': 'black'}} class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                   aria-expanded="false">Order</a>
         </li>
         <li class="nav-item">
@@ -87,7 +87,7 @@ export default function Header() {
                   <span style={{'line-height': '65px','color':'#007bff'}}>{retrieveuser ? retrieveuser : 'Guest'}</span>
                    
                 </a>
-                <a onClick={handleClick} style={{'font-size': '20px','color': 'rgb(0, 123, 255)'}} >
+                <a onClick={handleClick} style={{'font-size': '20px','color': 'rgb(0, 123, 255)','cursor':'pointer'}} >
                   <span style={{'line-height': '65px','padding-left': '10px'}}>{retrieveuser ? 'Logout' : 'Login'}</span>      
                 </a>      
         </li>

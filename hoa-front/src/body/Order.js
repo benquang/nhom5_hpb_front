@@ -75,6 +75,10 @@ export default function Order() {
     total = total + (car.unitprice * car.quantity)
   })
 
+  var total1 = 0;
+  tonghop.map((tong,inde) => {
+    total1 = total1 + (tong.quantity * tong.price);
+  })
 
   //order
   const [postOrder, setpostOrder] = useState({
@@ -164,7 +168,7 @@ export default function Order() {
             }
 
             <div class="order2_total">TOTAL</div>
-            <div class="order2_total_money">${total}</div>
+            <div class="order2_total_money">${total1}</div>
             <div class="order2_include_tax">(included All)</div>
             <input type="submit" class="order2_order" value="Order"></input>
 

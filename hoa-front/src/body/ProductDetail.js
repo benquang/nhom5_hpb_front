@@ -21,6 +21,7 @@ export default function Home() {
 
   const [quantity, setQuantity] = useState();
 
+  var unitprice1 = 0;
   useEffect(()=>{
       loadProduct();
   },[]);
@@ -38,12 +39,15 @@ export default function Home() {
 
       const result1=await axios.post(`http://localhost:9096/carts/quantity`, getProduct);
       setQuantity(result1.data)
+
+      unitprice1 = result.data.price
   };
 
   const [updateQuantity, setUpdateQuantity] = useState({
     user: localStorage.getItem('user'),
     product: id,
-    quantity: quantity
+    quantity: quantity,
+    unitprice: unitprice1
   });
 
   const onInputChange = (e) => {
@@ -101,6 +105,7 @@ export default function Home() {
                  name="quantity" value={updateQuantity.quantity}
                  onChange={(e) => onInputChange(e)}>
                 </input>
+
 
               </div>
               <input type="submit" value="Go to Cart" class="addcart"></input>
